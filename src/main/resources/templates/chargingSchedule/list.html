@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{chargingSchedule.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{chargingSchedule.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/chargingSchedules/add}" th:text="#{chargingSchedule.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${chargingSchedules.empty}" th:text="#{chargingSchedule.list.empty}" />
+            <div th:if="${!chargingSchedules.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{chargingSchedule.id.label}" scope="col" />
+                            <th th:text="#{chargingSchedule.uniqueId.label}" scope="col" />
+                            <th th:text="#{chargingSchedule.user.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="chargingSchedule : ${chargingSchedules}">
+                            <td th:text="${chargingSchedule.id}" />
+                            <td th:text="${chargingSchedule.uniqueId}" />
+                            <td th:text="${chargingSchedule.user}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/chargingSchedules/edit/{id}(id=${chargingSchedule.id})}" th:text="#{chargingSchedule.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/chargingSchedules/delete/{id}(id=${chargingSchedule.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{chargingSchedule.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

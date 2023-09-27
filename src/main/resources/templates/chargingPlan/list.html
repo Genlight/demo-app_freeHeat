@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{chargingPlan.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{chargingPlan.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/chargingPlans/add}" th:text="#{chargingPlan.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${chargingPlans.empty}" th:text="#{chargingPlan.list.empty}" />
+            <div th:if="${!chargingPlans.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{chargingPlan.id.label}" scope="col" />
+                            <th th:text="#{chargingPlan.nextCharge.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="chargingPlan : ${chargingPlans}">
+                            <td th:text="${chargingPlan.id}" />
+                            <td th:text="${chargingPlan.nextCharge}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/chargingPlans/edit/{id}(id=${chargingPlan.id})}" th:text="#{chargingPlan.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/chargingPlans/delete/{id}(id=${chargingPlan.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{chargingPlan.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

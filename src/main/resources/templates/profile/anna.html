@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="#{profile.anna.title}" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title" th:text="#{profile.device.title}"/>
+            <div th:if="${devices.empty}" th:text="#{device.list.empty}" />
+            <div th:if="${!devices.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th th:text="#{device.id.label}" scope="col" />
+                        <th th:text="#{device.type.label}" scope="col" />
+                        <th th:text="#{device.status.label}" scope="col" />
+                        <th th:text="#{device.description.label}" scope="col" />
+                        <th th:text="#{device.batteryLevel.label}" scope="col" />
+                        <th><!-- --></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="device : ${devices}">
+                        <td th:text="${device.id}" />
+                        <td th:text="${device.type}" />
+                        <td th:text="${device.status}" />
+                        <td th:text="${device.description}" />
+                        <td th:text="${device.batteryChargeLevel}" />
+                        <td>
+                            <div class="float-end text-nowrap">
+                                <a th:href="@{/devices/edit/{id}(id=${device.id})}" th:text="#{device.list.edit}" class="btn btn-sm btn-secondary" />
+                                <form th:action="@{/device/delete/{id}(id=${device.id})}"
+                                      th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                    <button th:text="#{device.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="/devices/list" class="btn btn-secondary">Go to Overview</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

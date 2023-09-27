@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{preferencesCharging.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{preferencesCharging.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/preferencesChargings/add}" th:text="#{preferencesCharging.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${preferencesChargings.empty}" th:text="#{preferencesCharging.list.empty}" />
+            <div th:if="${!preferencesChargings.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{preferencesCharging.id.label}" scope="col" />
+                            <th th:text="#{preferencesCharging.maxCost.label}" scope="col" />
+                            <th th:text="#{preferencesCharging.maxTime.label}" scope="col" />
+                            <th th:text="#{preferencesCharging.maxCharge.label}" scope="col" />
+                            <th th:text="#{preferencesCharging.minCharge.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="preferencesCharging : ${preferencesChargings}">
+                            <td th:text="${preferencesCharging.id}" />
+                            <td th:text="${preferencesCharging.maxCost}" />
+                            <td th:text="${preferencesCharging.maxTime}" />
+                            <td th:text="${preferencesCharging.maxCharge}" />
+                            <td th:text="${preferencesCharging.minCharge}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/preferencesChargings/edit/{id}(id=${preferencesCharging.id})}" th:text="#{preferencesCharging.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/preferencesChargings/delete/{id}(id=${preferencesCharging.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{preferencesCharging.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

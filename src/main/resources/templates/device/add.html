@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{device.add.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{device.add.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/devices}" th:text="#{device.add.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('device')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='device', field='Id')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='device', field='description')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='device', field='type')}" />
+
+                <input type="submit" th:value="#{device.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>
