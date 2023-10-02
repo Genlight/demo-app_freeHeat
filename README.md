@@ -2,6 +2,18 @@
 
 I created the skeleton with bootify.io, at https://bootify.io/app/5UO9247950Q5
 
+# Challenges done 
+
+* Device and Vehicle Management | "As a user, I can add, view, edit and delete a new vehicle or device to my account."
+
+Öffne dazu nach dem Start der Applikation (s.d. "starting the servers") http://localhost:8080/
+
+Theoretisch umgesetzt:
+* Frontend | "As a user, I can access the web application."
+* Frontend | "As a user, I can view a dashboard displaying my fleet of vehicles and their charging schedules."
+* Backend | "As a system, I can store user data, vehicle data, and schedules in a database."
+* Backend | "As a system, I can handle requests to generate and update charging schedules."
+
 # Prerequisites
 
 On your local computer, you need the following:
@@ -33,7 +45,7 @@ in a terminal start the postgres server (as a docker container):
 ```bash
 docker-compose up
 ```
-and in a another one, start the application server:
+and in another one, start the application server:
 ```bash
 mvn spring-boot:run
 ```
