@@ -6,13 +6,16 @@ I created the skeleton with bootify.io, at https://bootify.io/app/5UO9247950Q5
 
 * Device and Vehicle Management | "As a user, I can add, view, edit and delete a new vehicle or device to my account."
 
-Öffne dazu nach dem Start der Applikation (s.d. "starting the servers") http://localhost:8080/
+Öffne dazu nach dem Start der Applikation (s.d. "starting the servers") http://localhost:8080/ und wechsle im Menu auf die Registerkarte "Anna"
 
 Theoretisch umgesetzt:
 * Frontend | "As a user, I can access the web application."
 * Frontend | "As a user, I can view a dashboard displaying my fleet of vehicles and their charging schedules."
 * Backend | "As a system, I can store user data, vehicle data, and schedules in a database."
 * Backend | "As a system, I can handle requests to generate and update charging schedules."
+
+Siehe dazu auf der Website im Menu die verschiedenen Entities, die man setzen kann. Diese werden alle in einer DB ("Postgres")
+persistiert. 
 
 # Prerequisites
 
